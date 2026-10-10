@@ -3,11 +3,8 @@
     "rootNamespace": "Game.UI",
     "references": [
         "Game.Core",
-        "Game.Systems",
-        "UniTask",
-        "UniTask.DOTween",
-        "DOTween.Modules",
-        "Unity.TextMeshPro"
+        "Game.Contracts",
+        "UniTask"
     ],
     "autoReferenced": true
 }
