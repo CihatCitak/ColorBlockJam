@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Block
+  - GridElement
+  - Particle
+  - BlockParticle
+  - Color_0
+  - Color_Ignore_0
+  - Color_1
+  - Color_Ignore_1
+  - Color_2
+  - Color_Ignore_2
+  - Color_3
+  - Color_Ignore_3
+  - Color_4
+  - Color_Ignore_4
+  - Color_5
+  - Color_Ignore_5
+  - Color_6
+  - Color_Ignore_6
+  - Color_7
+  - Color_Ignore_7
+  - Color_8
+  - Color_Ignore_8
+  - Color_9
+  - Color_Ignore_9
+  - Rainbow
+  - Puzzle
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

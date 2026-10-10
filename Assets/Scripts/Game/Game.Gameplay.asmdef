@@ -1,0 +1,15 @@
+{
+    "name": "Game.Gameplay",
+    "rootNamespace": "Game.Gameplay",
+    "references": [
+        "Game.Core",
+        "Game.Systems",
+        "UniTask",
+        "UniTask.DOTween",
+        "UnityHFSM",
+        "DOTween.Modules",
+        "Cinemachine",
+        "Unity.TextMeshPro"
+    ],
+    "autoReferenced": true
+}

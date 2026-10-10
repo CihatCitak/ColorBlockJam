@@ -1,0 +1,11 @@
+{
+    "name": "Game.Systems",
+    "rootNamespace": "Game.Systems",
+    "references": [
+        "Game.Core",
+        "UniTask",
+        "UniTask.DOTween",
+        "UnityHFSM"
+    ],
+    "autoReferenced": true
+}
