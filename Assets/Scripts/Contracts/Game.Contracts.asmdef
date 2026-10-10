@@ -1,9 +1,0 @@
-{
-    "name": "Game.Contracts",
-    "rootNamespace": "Game.Contracts",
-    "references": [
-        "Game.Core",
-        "UniTask"
-    ],
-    "autoReferenced": true
-}
