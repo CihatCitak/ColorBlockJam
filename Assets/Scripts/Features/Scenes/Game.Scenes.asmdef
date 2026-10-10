@@ -1,0 +1,10 @@
+{
+    "name": "Game.Scenes",
+    "rootNamespace": "Game.Scenes",
+    "references": [
+        "Game.Core",
+        "Game.Contracts",
+        "UniTask"
+    ],
+    "autoReferenced": true
+}
