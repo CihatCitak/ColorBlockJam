@@ -1,0 +1,99 @@
+using System;
+using Game.Core.Services;
+using NUnit.Framework;
+using UnityEngine;
+
+namespace Game.Tests
+{
+    public class ServiceLocatorTests
+    {
+        private interface IFooService { }
+        private interface IBarService { }
+        private class FooBarService : IFooService, IBarService { }
+
+        private FooBarService _service;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _service = new FooBarService();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            ServiceLocator.Unbind<IFooService>(_service);
+            ServiceLocator.Unbind<IBarService>(_service);
+        }
+
+        [Test]
+        public void Bind_SameObjectUnderMultipleInterfaces_ResolvesEach()
+        {
+            ServiceLocator.Bind<IFooService>(_service);
+            ServiceLocator.Bind<IBarService>(_service);
+
+            Assert.AreSame(_service, ServiceLocator.Get<IFooService>());
+            Assert.AreSame(_service, ServiceLocator.Get<IBarService>());
+        }
+
+        [Test]
+        public void Bind_Twice_KeepsFirst()
+        {
+            ServiceLocator.Bind<IFooService>(_service);
+
+            WithoutLogs(() => ServiceLocator.Bind<IFooService>(new FooBarService()));
+
+            Assert.AreSame(_service, ServiceLocator.Get<IFooService>());
+        }
+
+        [Test]
+        public void Get_Unbound_ReturnsNull()
+        {
+            IFooService service = null;
+
+            WithoutLogs(() => service = ServiceLocator.Get<IFooService>());
+
+            Assert.IsNull(service);
+        }
+
+        // The error logs here are intended; keep them out of the console so the run doesn't look failed.
+        private static void WithoutLogs(Action action)
+        {
+            Debug.unityLogger.logEnabled = false;
+            try
+            {
+                action();
+            }
+            finally
+            {
+                Debug.unityLogger.logEnabled = true;
+            }
+        }
+
+        [Test]
+        public void TryGet_Unbound_ReturnsFalseWithoutError()
+        {
+            Assert.IsFalse(ServiceLocator.TryGet<IFooService>(out _));
+        }
+
+        [Test]
+        public void Unbind_RemovesService()
+        {
+            ServiceLocator.Bind<IFooService>(_service);
+
+            ServiceLocator.Unbind<IFooService>(_service);
+
+            Assert.IsFalse(ServiceLocator.TryGet<IFooService>(out _));
+        }
+
+        [Test]
+        public void Unbind_WithDifferentObject_KeepsBoundService()
+        {
+            ServiceLocator.Bind<IFooService>(_service);
+
+            ServiceLocator.Unbind<IFooService>(new FooBarService());
+
+            Assert.AreSame(_service, ServiceLocator.Get<IFooService>());
+        }
+    }
+}
