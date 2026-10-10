@@ -21,7 +21,6 @@ namespace Game.Core.Events
         {
             var list = Handlers<T>.List;
 
-            // Reverse iteration: a handler may unsubscribe itself during Fire.
             for (var i = list.Count - 1; i >= 0; i--)
             {
                 if (i < list.Count)

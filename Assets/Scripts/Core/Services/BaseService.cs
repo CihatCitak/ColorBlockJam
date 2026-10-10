@@ -2,13 +2,11 @@ using UnityEngine;
 
 namespace Game.Core.Services
 {
-    /// <summary>
-    /// Awake: BindServices. Start: Initialize — every Awake has run, so Get is safe.
-    /// OnDestroy: DeInitialize, then UnbindServices.
-    /// </summary>
-    public abstract class BaseService : MonoBehaviour, IService
+    public abstract class BaseService : MonoBehaviour, IService, IInitializable
     {
         private bool _isInitialized;
+
+        public bool IsInitialized => _isInitialized;
 
         protected abstract void BindServices();
 

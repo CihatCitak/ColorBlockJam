@@ -56,7 +56,6 @@ namespace Game.Tests
             Assert.IsNull(service);
         }
 
-        // The error logs here are intended; keep them out of the console so the run doesn't look failed.
         private static void WithoutLogs(Action action)
         {
             Debug.unityLogger.logEnabled = false;

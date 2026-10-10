@@ -1,0 +1,14 @@
+{
+    "name": "Game.LevelSystem",
+    "rootNamespace": "Game.LevelSystem",
+    "references": [
+        "GUID:5cc4edb8a1dce20438b39fc89873c59b",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:593a5b492d29ac6448b1ebf7f035ef33",
+        "GUID:9e24947de15b9834991c9d8411ea37cf",
+        "GUID:84651a3751eca9349aac36a66bba901b",
+        "GUID:f6161a329aef8a84fb5815cc0661c3a3",
+        "GUID:aa4e2bd9bb7000c44a758076756205fe"
+    ],
+    "autoReferenced": true
+}
