@@ -4,7 +4,8 @@
     "references": [
         "GUID:5cc4edb8a1dce20438b39fc89873c59b",
         "GUID:cad2f2a555a0a0545861ecedf71208a7",
-        "GUID:80b9c8e2387194d40ad1f1dc1b4b5e81"
+        "GUID:80b9c8e2387194d40ad1f1dc1b4b5e81",
+        "GUID:f6161a329aef8a84fb5815cc0661c3a3"
     ],
     "autoReferenced": true
 }

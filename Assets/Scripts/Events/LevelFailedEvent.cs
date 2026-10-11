@@ -2,7 +2,7 @@ using Game.Core.Events;
 
 namespace Game.Events
 {
-    public readonly struct GameplayLoadStartedEvent : IEvent
+    public readonly struct LevelFailedEvent : IEvent
     {
     }
 }
