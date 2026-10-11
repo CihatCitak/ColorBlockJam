@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0157ed28efd89ad4ab2998bb7ee40c76, type: 3}
   m_Name: ExitConfig
   m_EditorClassIdentifier: 
+  _exitPrefab: {fileID: 7537815745184915030, guid: 996ca79ebd55d6349a7c2987f89f5faa,
+    type: 3}
   _doorPrefab: {fileID: 7679693443368430268, guid: 0d9fd05d2dc7fc64f8e115b0386f4c83,
     type: 3}
   _arrowPrefab: {fileID: 6229822174102858222, guid: 8bba2ef5eebeca546af78beebd0e6cb7,

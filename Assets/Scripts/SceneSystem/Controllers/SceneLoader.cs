@@ -24,12 +24,19 @@ namespace Game.SceneSystem
 
         public override void Initialize()
         {
-            SceneManager.LoadSceneAsync(_mainSceneName).ToUniTask().Forget();
+            LoadMainAsync().Forget();
+        }
+
+        public async UniTask LoadMainAsync()
+        {
+            EventBus.Fire(new SceneLoadStartedEvent());
+            await SceneManager.LoadSceneAsync(_mainSceneName);
+            EventBus.Fire(new MainMenuLoadedEvent());
         }
 
         public async UniTask LoadGameplayAsync()
         {
-            EventBus.Fire(new GameplayLoadStartedEvent());
+            EventBus.Fire(new SceneLoadStartedEvent());
             await SceneManager.LoadSceneAsync(_gameplaySceneName);
         }
     }

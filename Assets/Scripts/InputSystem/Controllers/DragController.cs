@@ -1,3 +1,5 @@
+using Game.Core.Events;
+using Game.Events;
 using Lean.Touch;
 using UnityEngine;
 
@@ -16,12 +18,14 @@ namespace Game.InputSystem
         private LeanFinger _finger;
         private IDraggable _dragged;
         private Vector2 _grabOffset;
+        private bool _isLocked;
 
         private void OnEnable()
         {
             LeanTouch.OnFingerDown += OnFingerDown;
             LeanTouch.OnFingerUpdate += OnFingerUpdate;
             LeanTouch.OnFingerUp += OnFingerUp;
+            EventBus.Subscribe<InputLockChangedEvent>(OnInputLockChanged);
         }
 
         private void OnDisable()
@@ -29,11 +33,19 @@ namespace Game.InputSystem
             LeanTouch.OnFingerDown -= OnFingerDown;
             LeanTouch.OnFingerUpdate -= OnFingerUpdate;
             LeanTouch.OnFingerUp -= OnFingerUp;
+            EventBus.Unsubscribe<InputLockChangedEvent>(OnInputLockChanged);
+        }
+
+        private void OnInputLockChanged(InputLockChangedEvent e)
+        {
+            _isLocked = e.IsLocked;
+            if (_isLocked && _dragged != null)
+                Release();
         }
 
         private void OnFingerDown(LeanFinger finger)
         {
-            if (_dragged != null || finger.IsOverGui)
+            if (_isLocked || _dragged != null || finger.IsOverGui)
                 return;
 
             var point = PointOnBoard(finger);
@@ -55,9 +67,12 @@ namespace Game.InputSystem
 
         private void OnFingerUp(LeanFinger finger)
         {
-            if (finger != _finger)
-                return;
+            if (finger == _finger)
+                Release();
+        }
 
+        private void Release()
+        {
             _dragged.EndDrag();
             _dragged = null;
             _finger = null;

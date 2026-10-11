@@ -15,6 +15,9 @@ MonoBehaviour:
   _moveSpeed: 20
   _snapDuration: 0.15
   _snapEase: 6
+  _exitSpeed: 6
+  _exitEase: 1
+  _crushParticlesPerPart: 4
   _outlineColor: {r: 1, g: 1, b: 1, a: 1}
   _outlineWidth: 4
   _outlineMaskMaterial: {fileID: 2100000, guid: e5d91b9d7cadae8428b253b96d046b35,

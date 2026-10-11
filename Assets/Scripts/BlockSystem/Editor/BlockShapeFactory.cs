@@ -61,7 +61,7 @@ namespace Game.BlockSystem
                 instance.transform.localRotation = Quaternion.Euler(0f, 0f, part.Rotation);
             }
 
-            AssignOutline(root.GetComponent<BlockView>(), config);
+            AssignReferences(root.GetComponent<BlockView>(), config);
             return root;
         }
 
@@ -84,12 +84,13 @@ namespace Game.BlockSystem
             return cells.Select(cell => cell - min).ToList();
         }
 
-        private static void AssignOutline(BlockView view, BlockConfig config)
+        private static void AssignReferences(BlockView view, BlockConfig config)
         {
             var renderers = view.GetComponentsInChildren<Renderer>();
             var baseMaterial = renderers[0].sharedMaterial;
 
             var serializedView = new SerializedObject(view);
+            SetArray(serializedView.FindProperty("_cellColliders"), view.GetComponentsInChildren<Collider2D>());
             SetArray(serializedView.FindProperty("_renderers"), renderers);
             SetArray(serializedView.FindProperty("_plainMaterials"), new Object[] { baseMaterial });
             SetArray(serializedView.FindProperty("_outlinedMaterials"), new Object[] { baseMaterial, config.OutlineMaskMaterial, config.OutlineFillMaterial });

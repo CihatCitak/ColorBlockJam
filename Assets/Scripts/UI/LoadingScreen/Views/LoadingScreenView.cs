@@ -15,19 +15,26 @@ namespace Game.UI.LoadingScreen
 
         private void OnEnable()
         {
-            EventBus.Subscribe<GameplayLoadStartedEvent>(OnGameplayLoadStarted);
+            EventBus.Subscribe<SceneLoadStartedEvent>(OnSceneLoadStarted);
+            EventBus.Subscribe<MainMenuLoadedEvent>(OnMainMenuLoaded);
             EventBus.Subscribe<LevelReadyEvent>(OnLevelReady);
         }
 
         private void OnDisable()
         {
-            EventBus.Unsubscribe<GameplayLoadStartedEvent>(OnGameplayLoadStarted);
+            EventBus.Unsubscribe<SceneLoadStartedEvent>(OnSceneLoadStarted);
+            EventBus.Unsubscribe<MainMenuLoadedEvent>(OnMainMenuLoaded);
             EventBus.Unsubscribe<LevelReadyEvent>(OnLevelReady);
         }
 
-        private void OnGameplayLoadStarted(GameplayLoadStartedEvent e)
+        private void OnSceneLoadStarted(SceneLoadStartedEvent e)
         {
             _root.SetActive(true);
+        }
+
+        private void OnMainMenuLoaded(MainMenuLoadedEvent e)
+        {
+            _root.SetActive(false);
         }
 
         private void OnLevelReady(LevelReadyEvent e)

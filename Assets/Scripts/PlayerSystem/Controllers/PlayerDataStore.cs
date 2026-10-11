@@ -9,6 +9,7 @@ namespace Game.PlayerSystem
         private const string FileName = "player.json";
 
         private PlayerData _data;
+        private string _path;
 
         public int CurrentLevel => _data.CurrentLevel;
 
@@ -24,8 +25,14 @@ namespace Game.PlayerSystem
 
         public override void Initialize()
         {
-            var path = Path.Combine(Application.persistentDataPath, FileName);
-            _data = File.Exists(path) ? JsonUtility.FromJson<PlayerData>(File.ReadAllText(path)) : new PlayerData();
+            _path = Path.Combine(Application.persistentDataPath, FileName);
+            _data = File.Exists(_path) ? JsonUtility.FromJson<PlayerData>(File.ReadAllText(_path)) : new PlayerData();
+        }
+
+        public void CompleteLevel()
+        {
+            _data.CurrentLevel++;
+            File.WriteAllText(_path, JsonUtility.ToJson(_data));
         }
     }
 }

@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: e8d28501777d39443beffcdc745b8dd1, type: 2}
+  _crushEffect: {fileID: 0}
 --- !u!1 &7838112457123810310
 GameObject:
   m_ObjectHideFlags: 0

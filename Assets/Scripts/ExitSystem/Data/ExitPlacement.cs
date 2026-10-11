@@ -14,6 +14,7 @@ namespace Game.ExitSystem
         [SerializeField, Min(1)] private int _length;
         [SerializeField] private BlockColorData _color;
 
+        public Vector2Int Cell => _cell;
         public int Length => Mathf.Max(1, _length);
         public BlockColorData Color => _color;
 

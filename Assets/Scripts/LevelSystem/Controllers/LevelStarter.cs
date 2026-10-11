@@ -21,10 +21,11 @@ namespace Game.LevelSystem
 
             await UniTask.WaitUntil(() => loader.IsInitialized && creator.IsInitialized);
 
-            var data = await loader.LoadAsync(ServiceLocator.Get<IPlayerDataStore>().CurrentLevel);
+            var levelNumber = ServiceLocator.Get<IPlayerDataStore>().CurrentLevel;
+            var data = await loader.LoadAsync(levelNumber);
             await creator.CreateAsync(data);
 
-            EventBus.Fire(new LevelReadyEvent());
+            EventBus.Fire(new LevelReadyEvent(levelNumber, data.Blocks.Count, data.TimeLimit));
         }
     }
 }
