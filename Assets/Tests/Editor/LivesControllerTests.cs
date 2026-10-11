@@ -73,6 +73,16 @@ namespace Game.Tests
         }
 
         [Test]
+        public void Add_PastMax_CapsAtMax()
+        {
+            var data = new PlayerData { Lives = MaxLives - 1 };
+
+            LivesController.Add(data, 3, _config);
+
+            Assert.AreEqual(MaxLives, data.Lives);
+        }
+
+        [Test]
         public void LoseLife_AtZero_StaysZero()
         {
             var data = new PlayerData { Lives = 0 };

@@ -38,6 +38,7 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
+    - 064b5f100e8b19b4e9d8f9a4a609a1e9: 21300000
     - a8c1b150aad312e4fb0a826e6969faaf: 21300000
     - 90c70ad0d1cb7b14f93e5bc6c3274924: 21300000
     - 71a3a6013954ab446878deacde1f0e5b: 21300000
@@ -54,6 +55,7 @@ SpriteAtlas:
     - b81d3833afbb2fd46b9dbfe748bb5361: 21300000
     - 92d610436aaeb384aac75ec37c1f4539: 21300000
     - 474c40d332a320044a536b92431146b6: 21300000
+    - f50213d3de315f943afa75b5da66ff43: 21300000
     - bcc57904389e0334a84f46bf655335df: 21300000
     - 1596072455df7b74bbf364f6a3beb56f: 21300000
     - dd63c7949d09e174b82bc750a3b3ca72: 21300000
@@ -86,6 +88,7 @@ SpriteAtlas:
     - 66b3b97ff96a12043ad959a0089b02e5: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 064b5f100e8b19b4e9d8f9a4a609a1e9, type: 3}
   - {fileID: 21300000, guid: a8c1b150aad312e4fb0a826e6969faaf, type: 3}
   - {fileID: 21300000, guid: 90c70ad0d1cb7b14f93e5bc6c3274924, type: 3}
   - {fileID: 21300000, guid: 71a3a6013954ab446878deacde1f0e5b, type: 3}
@@ -102,6 +105,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b81d3833afbb2fd46b9dbfe748bb5361, type: 3}
   - {fileID: 21300000, guid: 92d610436aaeb384aac75ec37c1f4539, type: 3}
   - {fileID: 21300000, guid: 474c40d332a320044a536b92431146b6, type: 3}
+  - {fileID: 21300000, guid: f50213d3de315f943afa75b5da66ff43, type: 3}
   - {fileID: 21300000, guid: bcc57904389e0334a84f46bf655335df, type: 3}
   - {fileID: 21300000, guid: 1596072455df7b74bbf364f6a3beb56f, type: 3}
   - {fileID: 21300000, guid: dd63c7949d09e174b82bc750a3b3ca72, type: 3}
@@ -133,6 +137,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3312032fcc2441142a833b0af22e81ec, type: 3}
   - {fileID: 21300000, guid: 66b3b97ff96a12043ad959a0089b02e5, type: 3}
   m_PackedSpriteNamesToIndex:
+  - bg_popup_header_pink
   - Btn_popup_yellow
   - Btn_circle_green_small
   - lock
@@ -149,6 +154,7 @@ SpriteAtlas:
   - bg_popup_info_holder_2
   - SquareRoundedMask
   - Clock
+  - Clapperboard
   - Blockjam_Settings_Music
   - Coin_Single
   - Btn_levelBg_normal

@@ -48,6 +48,19 @@ namespace Game.PlayerSystem
             _store.Save();
         }
 
+        public void Add(int amount)
+        {
+            var now = DateTime.UtcNow;
+            Refill(_store.Data, now, _config);
+            Add(_store.Data, amount, _config);
+            _store.Save();
+        }
+
+        public void Fill()
+        {
+            Add(_config.MaxLives);
+        }
+
         internal static void Refill(PlayerData data, DateTime now, PlayerConfig config)
         {
             if (data.Lives >= config.MaxLives)
@@ -65,6 +78,11 @@ namespace Game.PlayerSystem
         internal static TimeSpan TimeToNext(PlayerData data, DateTime now, PlayerConfig config)
         {
             return config.LifeRefillInterval - TimeSpan.FromTicks(now.Ticks - data.LifeRefillStartTicks);
+        }
+
+        internal static void Add(PlayerData data, int amount, PlayerConfig config)
+        {
+            data.Lives = Math.Min(config.MaxLives, data.Lives + amount);
         }
 
         internal static void LoseLife(PlayerData data, DateTime now, PlayerConfig config)
