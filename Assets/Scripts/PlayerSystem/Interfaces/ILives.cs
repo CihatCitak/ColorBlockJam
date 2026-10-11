@@ -8,5 +8,7 @@ namespace Game.PlayerSystem
         bool IsFull { get; }
         TimeSpan TimeToNextLife { get; }
         void LoseLife();
+        void Add(int amount);
+        void Fill();
     }
 }

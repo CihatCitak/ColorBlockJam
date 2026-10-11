@@ -27,6 +27,7 @@ namespace Game.UI.Common
         {
             _onHome = onHome;
             _onClose = onClose;
+            _homeButton.gameObject.SetActive(onHome != null);
             _vibrationToggle.Bind(isOn(PlayerSetting.Vibration), value => onToggled(PlayerSetting.Vibration, value));
             _soundToggle.Bind(isOn(PlayerSetting.Sound), value => onToggled(PlayerSetting.Sound, value));
             _musicToggle.Bind(isOn(PlayerSetting.Music), value => onToggled(PlayerSetting.Music, value));
