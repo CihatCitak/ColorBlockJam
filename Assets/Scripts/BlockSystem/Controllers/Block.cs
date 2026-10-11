@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using Game.Core.Events;
 using Game.Events;
@@ -11,6 +12,7 @@ namespace Game.BlockSystem
     internal class Block : MonoBehaviour, IDraggable, IBlock
     {
         private const int ExitClearanceCells = 1;
+        private const int MaxPathHits = 4;
 
         private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
         private static readonly int OutlineColorId = Shader.PropertyToID("_OutlineColor");
@@ -34,6 +36,10 @@ namespace Game.BlockSystem
         private Vector2Int _exitDirection;
         private Vector2 _exitTarget;
         private float _gateDistance;
+
+        private readonly List<Vector2Int> _occupiedCells = new();
+        private readonly List<Vector2Int> _exitPath = new();
+        private readonly Collider2D[] _pathHits = new Collider2D[MaxPathHits];
 
         public Vector2 Position => _body.position;
         public BlockColorData Color => _color;
@@ -101,6 +107,26 @@ namespace Game.BlockSystem
             _snap = DOTween.To(() => _body.position, MoveTo, target, _config.SnapDuration)
                 .SetEase(_config.SnapEase)
                 .SetLink(gameObject);
+        }
+
+        public bool CanExit(Vector2Int direction)
+        {
+            _occupiedCells.Clear();
+            foreach (var cellCollider in _cellColliders)
+                _occupiedCells.Add(_grid.WorldToCell(cellCollider.transform.position));
+
+            BlockShapeMath.ExitPath(_occupiedCells, direction, _exitPath);
+            foreach (var cell in _exitPath)
+            {
+                var count = Physics2D.OverlapPointNonAlloc(_grid.CellToWorld(cell), _pathHits);
+                for (var i = 0; i < count; i++)
+                {
+                    if (_pathHits[i].attachedRigidbody != _body)
+                        return false;
+                }
+            }
+
+            return true;
         }
 
         public void Exit(Vector2Int direction, Vector2 gate)
