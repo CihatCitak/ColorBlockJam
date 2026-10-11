@@ -45,7 +45,8 @@ namespace Game.ExitSystem
             if (_touchingBlock == null || collision.rigidbody != _touchingBody)
                 return;
 
-            if (ExitFit.Fits(_touchingBlock.Color, _touchingBlock.Cells, _placement.Color, _placement.Cell, _placement.Length, _outward))
+            if (ExitFit.Fits(_touchingBlock.Color, _touchingBlock.Cells, _placement.Color, _placement.Cell, _placement.Length, _outward)
+                && _touchingBlock.CanExit(_outward))
                 _touchingBlock.Exit(_outward, _gate);
         }
 
