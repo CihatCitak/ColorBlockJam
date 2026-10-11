@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e638c3515fca34c8fe5207970b0c30, type: 3}
+  m_Name: Level_024
+  m_EditorClassIdentifier: 
+  _gridSize: {x: 8, y: 11}
+  _timeLimit: 300
+  _holes:
+  - {x: 3, y: 0}
+  _obstacles:
+  - {x: 6, y: 1}
+  - {x: 4, y: 8}
+  _exits:
+  - _cell: {x: 7, y: 1}
+    _side: 3
+    _length: 1
+    _color: {fileID: 11400000, guid: 42e5cec9b5f5cd54fab13bccbeee5bfd, type: 2}
+  - _cell: {x: 4, y: 0}
+    _side: 2
+    _length: 1
+    _color: {fileID: 11400000, guid: c05377a5609cf4a42a859115c69794ad, type: 2}
+  - _cell: {x: 0, y: 8}
+    _side: 2
+    _length: 1
+    _color: {fileID: 11400000, guid: 5effeca5e159b774db30cccaed19a0c6, type: 2}
+  - _cell: {x: 0, y: 10}
+    _side: 0
+    _length: 3
+    _color: {fileID: 11400000, guid: cd2925d14a5df5a4b8b778b5f1d4bb40, type: 2}
+  - _cell: {x: 7, y: 2}
+    _side: 3
+    _length: 2
+    _color: {fileID: 11400000, guid: 93df294b6ec0f5141b60252cab32fb8d, type: 2}
+  - _cell: {x: 3, y: 10}
+    _side: 0
+    _length: 3
+    _color: {fileID: 11400000, guid: 2af1d3b2c491b4042a1cb37546d1cfe4, type: 2}
+  - _cell: {x: 0, y: 0}
+    _side: 1
+    _length: 2
+    _color: {fileID: 11400000, guid: be7553c06631d5c4aac744795d9848ff, type: 2}
+  - _cell: {x: 7, y: 6}
+    _side: 3
+    _length: 1
+    _color: {fileID: 11400000, guid: 42e5cec9b5f5cd54fab13bccbeee5bfd, type: 2}
+  - _cell: {x: 7, y: 0}
+    _side: 3
+    _length: 1
+    _color: {fileID: 11400000, guid: c05377a5609cf4a42a859115c69794ad, type: 2}
+  _blocks:
+  - _shape: {fileID: 11400000, guid: c6140c473ad318c4189e52d89c3f32b3, type: 2}
+    _color: {fileID: 11400000, guid: be7553c06631d5c4aac744795d9848ff, type: 2}
+    _cell: {x: 5, y: 9}
+    _quarterTurns: 1
+  - _shape: {fileID: 11400000, guid: 3cc5cf4a997867e4eb1ae72b022ec9c0, type: 2}
+    _color: {fileID: 11400000, guid: 2af1d3b2c491b4042a1cb37546d1cfe4, type: 2}
+    _cell: {x: 1, y: 8}
+    _quarterTurns: 2
+  - _shape: {fileID: 11400000, guid: c6140c473ad318c4189e52d89c3f32b3, type: 2}
+    _color: {fileID: 11400000, guid: 93df294b6ec0f5141b60252cab32fb8d, type: 2}
+    _cell: {x: 0, y: 5}
+    _quarterTurns: 3
+  - _shape: {fileID: 11400000, guid: 6524fe4d8219cc746bb3ac20d29b4577, type: 2}
+    _color: {fileID: 11400000, guid: cd2925d14a5df5a4b8b778b5f1d4bb40, type: 2}
+    _cell: {x: 4, y: 3}
+    _quarterTurns: 2
+  - _shape: {fileID: 11400000, guid: 9a93c16019e44484cb36c060df1b77a3, type: 2}
+    _color: {fileID: 11400000, guid: 42e5cec9b5f5cd54fab13bccbeee5bfd, type: 2}
+    _cell: {x: 3, y: 9}
+    _quarterTurns: 0
+  - _shape: {fileID: 11400000, guid: 6524fe4d8219cc746bb3ac20d29b4577, type: 2}
+    _color: {fileID: 11400000, guid: 5effeca5e159b774db30cccaed19a0c6, type: 2}
+    _cell: {x: 5, y: 7}
+    _quarterTurns: 3
+  - _shape: {fileID: 11400000, guid: 9a93c16019e44484cb36c060df1b77a3, type: 2}
+    _color: {fileID: 11400000, guid: c05377a5609cf4a42a859115c69794ad, type: 2}
+    _cell: {x: 0, y: 7}
+    _quarterTurns: 0
+  - _shape: {fileID: 11400000, guid: 9a93c16019e44484cb36c060df1b77a3, type: 2}
+    _color: {fileID: 11400000, guid: be7553c06631d5c4aac744795d9848ff, type: 2}
+    _cell: {x: 0, y: 1}
+    _quarterTurns: 2
+  - _shape: {fileID: 11400000, guid: 6f43717dd436df04e9781ae69bf0bf07, type: 2}
+    _color: {fileID: 11400000, guid: cd2925d14a5df5a4b8b778b5f1d4bb40, type: 2}
+    _cell: {x: 5, y: 0}
+    _quarterTurns: 3
+  - _shape: {fileID: 11400000, guid: 9a93c16019e44484cb36c060df1b77a3, type: 2}
+    _color: {fileID: 11400000, guid: 42e5cec9b5f5cd54fab13bccbeee5bfd, type: 2}
+    _cell: {x: 2, y: 4}
+    _quarterTurns: 1
+  - _shape: {fileID: 11400000, guid: 6f43717dd436df04e9781ae69bf0bf07, type: 2}
+    _color: {fileID: 11400000, guid: 93df294b6ec0f5141b60252cab32fb8d, type: 2}
+    _cell: {x: 1, y: 1}
+    _quarterTurns: 3
+  - _shape: {fileID: 11400000, guid: 6f43717dd436df04e9781ae69bf0bf07, type: 2}
+    _color: {fileID: 11400000, guid: c05377a5609cf4a42a859115c69794ad, type: 2}
+    _cell: {x: 2, y: 5}
+    _quarterTurns: 3
+  - _shape: {fileID: 11400000, guid: 6524fe4d8219cc746bb3ac20d29b4577, type: 2}
+    _color: {fileID: 11400000, guid: 5effeca5e159b774db30cccaed19a0c6, type: 2}
+    _cell: {x: 3, y: 2}
+    _quarterTurns: 3
+  - _shape: {fileID: 11400000, guid: 6f43717dd436df04e9781ae69bf0bf07, type: 2}
+    _color: {fileID: 11400000, guid: 2af1d3b2c491b4042a1cb37546d1cfe4, type: 2}
+    _cell: {x: 6, y: 2}
+    _quarterTurns: 1
+  - _shape: {fileID: 11400000, guid: 9a93c16019e44484cb36c060df1b77a3, type: 2}
+    _color: {fileID: 11400000, guid: 93df294b6ec0f5141b60252cab32fb8d, type: 2}
+    _cell: {x: 5, y: 1}
+    _quarterTurns: 3

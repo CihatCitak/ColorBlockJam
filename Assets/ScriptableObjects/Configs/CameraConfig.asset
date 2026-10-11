@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37042c05a739f824c86eb2f2bdc95271, type: 3}
   m_Name: CameraConfig
   m_EditorClassIdentifier: 
-  _fieldOfView: 35
+  _fieldOfView: 30
   _pitch: 15
   _padding: 0

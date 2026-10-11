@@ -57,14 +57,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _plainMaterials.Array.data[0]
       value: 
-      objectReference: {fileID: -4085299679613993177, guid: 0a090493c98106745aa9d416ba10b0d5,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: a8c20b75febd4a14a9788ff83daa898e, type: 2}
     - target: {fileID: 3745429541175150616, guid: d838ce181b1fc284fadd89b48c407907,
         type: 3}
       propertyPath: _outlinedMaterials.Array.data[0]
       value: 
-      objectReference: {fileID: -4085299679613993177, guid: 0a090493c98106745aa9d416ba10b0d5,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: a8c20b75febd4a14a9788ff83daa898e, type: 2}
     - target: {fileID: 3745429541175150616, guid: d838ce181b1fc284fadd89b48c407907,
         type: 3}
       propertyPath: _outlinedMaterials.Array.data[1]
