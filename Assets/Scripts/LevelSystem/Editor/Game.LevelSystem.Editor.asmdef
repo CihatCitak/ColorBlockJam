@@ -1,0 +1,17 @@
+{
+    "name": "Game.LevelSystem.Editor",
+    "rootNamespace": "Game.LevelSystem",
+    "references": [
+        "GUID:f94060dc3ec10af4b9c943d90dc3feab",
+        "GUID:12ea7ab0f5e49904789cfe3b78d56e7b",
+        "GUID:90a76716702aac148aa1ecf85c05da75",
+        "GUID:301e15957d6dc6d4e8fec66241fafacb",
+        "GUID:9e24947de15b9834991c9d8411ea37cf",
+        "GUID:69448af7b92c7f342b298e06a37122aa",
+        "GUID:cad2f2a555a0a0545861ecedf71208a7"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "autoReferenced": true
+}

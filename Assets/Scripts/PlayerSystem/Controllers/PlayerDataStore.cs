@@ -6,7 +6,7 @@ namespace Game.PlayerSystem
 {
     internal class PlayerDataStore : BaseService, IPlayerLevelProgress
     {
-        private const string FileName = "player.json";
+        internal const string FileName = "player.json";
 
         [SerializeField] private PlayerConfig _config;
 

@@ -13,32 +13,24 @@ MonoBehaviour:
   m_Name: Level_001
   m_EditorClassIdentifier: 
   _gridSize: {x: 4, y: 5}
-  _timeLimit: 60
+  _timeLimit: 300
   _holes: []
   _obstacles: []
   _exits:
   - _cell: {x: 1, y: 4}
     _side: 0
-    _length: 2
+    _length: 3
     _color: {fileID: 11400000, guid: 93df294b6ec0f5141b60252cab32fb8d, type: 2}
-  - _cell: {x: 2, y: 0}
+  - _cell: {x: 0, y: 0}
     _side: 1
-    _length: 1
-    _color: {fileID: 11400000, guid: 5effeca5e159b774db30cccaed19a0c6, type: 2}
-  - _cell: {x: 3, y: 2}
-    _side: 3
-    _length: 2
-    _color: {fileID: 11400000, guid: be7553c06631d5c4aac744795d9848ff, type: 2}
+    _length: 3
+    _color: {fileID: 11400000, guid: c05377a5609cf4a42a859115c69794ad, type: 2}
   _blocks:
   - _shape: {fileID: 11400000, guid: c6140c473ad318c4189e52d89c3f32b3, type: 2}
+    _color: {fileID: 11400000, guid: c05377a5609cf4a42a859115c69794ad, type: 2}
+    _cell: {x: 0, y: 1}
+    _quarterTurns: 0
+  - _shape: {fileID: 11400000, guid: c6140c473ad318c4189e52d89c3f32b3, type: 2}
     _color: {fileID: 11400000, guid: 93df294b6ec0f5141b60252cab32fb8d, type: 2}
-    _cell: {x: 0, y: 0}
+    _cell: {x: 2, y: 2}
     _quarterTurns: 0
-  - _shape: {fileID: 11400000, guid: 6f43717dd436df04e9781ae69bf0bf07, type: 2}
-    _color: {fileID: 11400000, guid: 5effeca5e159b774db30cccaed19a0c6, type: 2}
-    _cell: {x: 3, y: 0}
-    _quarterTurns: 0
-  - _shape: {fileID: 11400000, guid: 6524fe4d8219cc746bb3ac20d29b4577, type: 2}
-    _color: {fileID: 11400000, guid: be7553c06631d5c4aac744795d9848ff, type: 2}
-    _cell: {x: 0, y: 3}
-    _quarterTurns: 1

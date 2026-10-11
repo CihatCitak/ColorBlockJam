@@ -10,12 +10,16 @@ namespace Game.BlockSystem
         private const int GridSize = BlockShapePreview.GridSize;
         private const float CellButtonSize = 32f;
         private const float PreviewSize = GridSize * CellButtonSize;
+        private const float SectionSpacing = 20f;
+        private const string GridHint = "Left click: add or remove a cell    Right click: remove a cell";
 
         private static readonly Color FilledColor = new(0.3f, 0.8f, 0.4f);
         private static readonly GUIContent PivotContent = new("P", "Prefab pivot. Create moves the shape here.");
 
         [SerializeField] private string _shapeName = string.Empty;
         [SerializeField] private List<Vector2Int> _cells = new();
+        [SerializeField] private string _colorName = string.Empty;
+        [SerializeField] private Color _color = Color.white;
 
         private BlockShapePreview _preview;
 
@@ -37,11 +41,20 @@ namespace Game.BlockSystem
 
         private void OnGUI()
         {
+            DrawShapeCreator();
+            GUILayout.Space(SectionSpacing);
+            DrawColorCreator();
+        }
+
+        private void DrawShapeCreator()
+        {
+            EditorGUILayout.LabelField("Shape", EditorStyles.boldLabel);
             _shapeName = EditorGUILayout.TextField("Name", _shapeName);
             var shapeName = _shapeName.Trim();
 
             EditorGUILayout.Space();
             DrawGrid();
+            EditorGUILayout.HelpBox(GridHint, MessageType.Info);
             EditorGUILayout.Space();
             _preview.Draw(_cells, PreviewSize);
             EditorGUILayout.Space();
@@ -52,8 +65,26 @@ namespace Game.BlockSystem
 
             using (new EditorGUI.DisabledScope(error != null))
             {
-                if (GUILayout.Button("Create"))
+                if (GUILayout.Button("Create Shape"))
                     Create(shapeName);
+            }
+        }
+
+        private void DrawColorCreator()
+        {
+            EditorGUILayout.LabelField("Color", EditorStyles.boldLabel);
+            _colorName = EditorGUILayout.TextField("Name", _colorName);
+            _color = EditorGUILayout.ColorField(new GUIContent("Color"), _color, true, false, false);
+            var colorName = _colorName.Trim();
+
+            var error = ValidateName(colorName, BlockColorFactory.Exists(colorName), "color");
+            if (error != null)
+                EditorGUILayout.HelpBox(error, MessageType.Warning);
+
+            using (new EditorGUI.DisabledScope(error != null))
+            {
+                if (GUILayout.Button("Create Color"))
+                    CreateColor(colorName);
             }
         }
 
@@ -69,8 +100,17 @@ namespace Game.BlockSystem
                         var cell = new Vector2Int(x, y);
                         var content = cell == Vector2Int.zero ? PivotContent : GUIContent.none;
                         GUI.backgroundColor = _cells.Contains(cell) ? FilledColor : defaultColor;
-                        if (GUILayout.Button(content, GUILayout.Width(CellButtonSize), GUILayout.Height(CellButtonSize)))
+                        var rect = GUILayoutUtility.GetRect(content, GUI.skin.button, GUILayout.Width(CellButtonSize), GUILayout.Height(CellButtonSize));
+                        var current = Event.current;
+                        if (current.type == EventType.MouseDown && current.button == 1 && rect.Contains(current.mousePosition))
+                        {
+                            Remove(cell);
+                            current.Use();
+                        }
+                        else if (GUI.Button(rect, content))
+                        {
                             Toggle(cell);
+                        }
                     }
                 }
             }
@@ -85,18 +125,27 @@ namespace Game.BlockSystem
                 _cells.Add(cell);
         }
 
+        private void Remove(Vector2Int cell)
+        {
+            Undo.RecordObject(this, "Remove Shape Cell");
+            _cells.Remove(cell);
+        }
+
         private string Validate(string shapeName)
         {
-            if (shapeName.Length == 0)
+            var error = ValidateName(shapeName, BlockShapeFactory.Exists(shapeName), "shape");
+            return error ?? (_cells.Count == 0 ? "Select at least one cell." : null);
+        }
+
+        private static string ValidateName(string assetName, bool exists, string kind)
+        {
+            if (assetName.Length == 0)
                 return "Enter a name.";
 
-            if (shapeName.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+            if (assetName.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
                 return "Name contains invalid characters.";
 
-            if (BlockShapeFactory.Exists(shapeName))
-                return $"A shape named {shapeName} already exists.";
-
-            return _cells.Count == 0 ? "Select at least one cell." : null;
+            return exists ? $"A {kind} named {assetName} already exists." : null;
         }
 
         private void Create(string shapeName)
@@ -107,6 +156,15 @@ namespace Game.BlockSystem
 
             _shapeName = string.Empty;
             _cells.Clear();
+        }
+
+        private void CreateColor(string colorName)
+        {
+            var color = BlockColorFactory.Create(colorName, _color);
+            Selection.activeObject = color;
+            EditorGUIUtility.PingObject(color);
+
+            _colorName = string.Empty;
         }
     }
 }
