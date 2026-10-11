@@ -114,7 +114,7 @@ namespace Game.BlockSystem
             return $"{PrefabFolder}/{BlockPrefix}{name}.prefab";
         }
 
-        private static T LoadSingle<T>() where T : Object
+        public static T LoadSingle<T>() where T : Object
         {
             var guids = AssetDatabase.FindAssets($"t:{typeof(T).Name}");
             return AssetDatabase.LoadAssetAtPath<T>(AssetDatabase.GUIDToAssetPath(guids[0]));

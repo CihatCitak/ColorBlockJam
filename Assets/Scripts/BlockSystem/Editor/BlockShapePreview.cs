@@ -40,7 +40,8 @@ namespace Game.BlockSystem
                 return;
 
             var center = Vector2.one * ((GridSize - 1) * 0.5f * _cellSize);
-            Render(rect, GUIStyle.none, center, GridSize * _cellSize * 0.5f);
+            Aim(center, GridSize * _cellSize * 0.5f);
+            Render(rect, GUIStyle.none);
         }
 
         public void Draw(GameObject prefab, Rect rect, GUIStyle background)
@@ -48,18 +49,16 @@ namespace Game.BlockSystem
             if (Event.current.type != EventType.Repaint)
                 return;
 
-            if (_prefab != prefab)
-            {
-                _prefab = prefab;
-                Replace(_preview.InstantiatePrefabInScene(prefab));
-            }
+            Frame(prefab, rect);
+            Render(rect, background);
+        }
 
-            var bounds = new Bounds(_instance.transform.position, Vector3.zero);
-            foreach (var partRenderer in _instance.GetComponentsInChildren<Renderer>())
-                bounds.Encapsulate(partRenderer.bounds);
-
-            var halfHeight = Mathf.Max(bounds.extents.y, bounds.extents.x * rect.height / rect.width) * PrefabMargin;
-            Render(rect, background, bounds.center, halfHeight);
+        public Texture Capture(GameObject prefab, Rect rect)
+        {
+            Frame(prefab, rect);
+            _preview.BeginStaticPreview(rect);
+            _preview.camera.Render();
+            return _preview.EndStaticPreview();
         }
 
         public void Dispose()
@@ -93,15 +92,34 @@ namespace Game.BlockSystem
             _instance = instance;
         }
 
-        private void Render(Rect rect, GUIStyle background, Vector2 center, float halfHeight)
+        private void Frame(GameObject prefab, Rect rect)
+        {
+            if (_prefab != prefab)
+            {
+                _prefab = prefab;
+                Replace(_preview.InstantiatePrefabInScene(prefab));
+            }
+
+            var bounds = new Bounds(_instance.transform.position, Vector3.zero);
+            foreach (var partRenderer in _instance.GetComponentsInChildren<Renderer>())
+                bounds.Encapsulate(partRenderer.bounds);
+
+            var halfHeight = Mathf.Max(bounds.extents.y, bounds.extents.x * rect.height / rect.width) * PrefabMargin;
+            Aim(bounds.center, halfHeight);
+        }
+
+        private void Render(Rect rect, GUIStyle background)
+        {
+            _preview.BeginPreview(rect, background);
+            _preview.camera.Render();
+            _preview.EndAndDrawPreview(rect);
+        }
+
+        private void Aim(Vector2 center, float halfHeight)
         {
             var camera = _preview.camera;
             camera.orthographicSize = halfHeight;
             camera.transform.position = new Vector3(center.x, center.y, -CameraDistance);
-
-            _preview.BeginPreview(rect, background);
-            camera.Render();
-            _preview.EndAndDrawPreview(rect);
         }
     }
 }

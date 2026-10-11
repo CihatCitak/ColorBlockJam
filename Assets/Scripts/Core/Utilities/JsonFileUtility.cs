@@ -17,6 +17,11 @@ namespace Game.Core.Utilities
             File.WriteAllText(PathOf(fileName), JsonUtility.ToJson(source));
         }
 
+        public static void Delete(string fileName)
+        {
+            File.Delete(PathOf(fileName));
+        }
+
         private static string PathOf(string fileName)
         {
             return Path.Combine(Application.persistentDataPath, fileName);
