@@ -1,7 +1,5 @@
-using System;
 using Game.Core.Services;
 using NUnit.Framework;
-using UnityEngine;
 
 namespace Game.Tests
 {
@@ -41,7 +39,7 @@ namespace Game.Tests
         {
             ServiceLocator.Bind<IFooService>(_service);
 
-            WithoutLogs(() => ServiceLocator.Bind<IFooService>(new FooBarService()));
+            LogUtility.WithoutLogs(() => ServiceLocator.Bind<IFooService>(new FooBarService()));
 
             Assert.AreSame(_service, ServiceLocator.Get<IFooService>());
         }
@@ -51,22 +49,9 @@ namespace Game.Tests
         {
             IFooService service = null;
 
-            WithoutLogs(() => service = ServiceLocator.Get<IFooService>());
+            LogUtility.WithoutLogs(() => service = ServiceLocator.Get<IFooService>());
 
             Assert.IsNull(service);
-        }
-
-        private static void WithoutLogs(Action action)
-        {
-            Debug.unityLogger.logEnabled = false;
-            try
-            {
-                action();
-            }
-            finally
-            {
-                Debug.unityLogger.logEnabled = true;
-            }
         }
 
         [Test]

@@ -74,5 +74,18 @@ namespace Game.Tests
 
             Assert.AreEqual(2, otherCalls);
         }
+
+        [Test]
+        public void Fire_HandlerThrows_OtherHandlersStillCalled()
+        {
+            var otherCalls = 0;
+            Subscribe(_ => otherCalls++);
+            Subscribe(_ => throw new InvalidOperationException());
+            Subscribe(_ => otherCalls++);
+
+            LogUtility.WithoutLogs(() => EventBus.Fire(new TestEvent()));
+
+            Assert.AreEqual(2, otherCalls);
+        }
     }
 }

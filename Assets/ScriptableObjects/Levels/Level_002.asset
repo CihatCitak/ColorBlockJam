@@ -12,3 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e638c3515fca34c8fe5207970b0c30, type: 3}
   m_Name: Level_002
   m_EditorClassIdentifier: 
+  _gridSize: {x: 5, y: 5}
+  _holes:
+  - {x: 3, y: 4}
+  - {x: 4, y: 4}
+  - {x: 3, y: 3}
+  - {x: 4, y: 3}
+  _obstacles:
+  - {x: 1, y: 2}
+  _exits:
+  - _cell: {x: 0, y: 4}
+    _side: 0
+    _length: 3
+    _color: {fileID: 11400000, guid: c05377a5609cf4a42a859115c69794ad, type: 2}
+  - _cell: {x: 4, y: 0}
+    _side: 3
+    _length: 2
+    _color: {fileID: 11400000, guid: 93df294b6ec0f5141b60252cab32fb8d, type: 2}
+  _blocks:
+  - _shape: {fileID: 11400000, guid: 3cc5cf4a997867e4eb1ae72b022ec9c0, type: 2}
+    _color: {fileID: 11400000, guid: c05377a5609cf4a42a859115c69794ad, type: 2}
+    _cell: {x: 0, y: 0}
+    _quarterTurns: 1
+  - _shape: {fileID: 11400000, guid: 6f43717dd436df04e9781ae69bf0bf07, type: 2}
+    _color: {fileID: 11400000, guid: 93df294b6ec0f5141b60252cab32fb8d, type: 2}
+    _cell: {x: 4, y: 0}
+    _quarterTurns: 0
+  - _shape: {fileID: 11400000, guid: 9a93c16019e44484cb36c060df1b77a3, type: 2}
+    _color: {fileID: 11400000, guid: cd2925d14a5df5a4b8b778b5f1d4bb40, type: 2}
+    _cell: {x: 2, y: 3}
+    _quarterTurns: 0

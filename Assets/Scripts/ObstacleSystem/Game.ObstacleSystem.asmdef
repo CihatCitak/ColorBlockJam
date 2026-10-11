@@ -1,0 +1,9 @@
+{
+    "name": "Game.ObstacleSystem",
+    "rootNamespace": "Game.ObstacleSystem",
+    "references": [
+        "GUID:5cc4edb8a1dce20438b39fc89873c59b",
+        "GUID:cad2f2a555a0a0545861ecedf71208a7"
+    ],
+    "autoReferenced": true
+}

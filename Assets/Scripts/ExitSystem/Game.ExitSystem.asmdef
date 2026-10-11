@@ -1,0 +1,10 @@
+{
+    "name": "Game.ExitSystem",
+    "rootNamespace": "Game.ExitSystem",
+    "references": [
+        "GUID:5cc4edb8a1dce20438b39fc89873c59b",
+        "GUID:cad2f2a555a0a0545861ecedf71208a7",
+        "GUID:12ea7ab0f5e49904789cfe3b78d56e7b"
+    ],
+    "autoReferenced": true
+}

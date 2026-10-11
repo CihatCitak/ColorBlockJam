@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bde9204c6c014c4782d440a50b5bec8, type: 3}
+  m_Name: GridConfig
+  m_EditorClassIdentifier: 
+  _cellSize: 1
+  _wallThickness: 0.5
+  _cellPrefab: {fileID: 3309841588880760769, guid: 0048141cc9d5e0646bbad0947d765044,
+    type: 3}
+  _wallPrefab: {fileID: 5817183874766552632, guid: 1ce462c635f40714f9b0c4a437325a5b,
+    type: 3}
+  _wallCornerPrefab: {fileID: 7451275801325938930, guid: 78667339affed074eb6ba1c93f90dc27,
+    type: 3}
+  _wallLCornerPrefab: {fileID: 7451275801325938930, guid: ed92ded389c4f0246bb3fe0c1b03a1d8,
+    type: 3}

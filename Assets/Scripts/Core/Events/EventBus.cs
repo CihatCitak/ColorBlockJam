@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Game.Core.Events
 {
@@ -23,8 +24,17 @@ namespace Game.Core.Events
 
             for (var i = list.Count - 1; i >= 0; i--)
             {
-                if (i < list.Count)
+                if (i >= list.Count)
+                    continue;
+
+                try
+                {
                     list[i](e);
+                }
+                catch (Exception exception)
+                {
+                    Debug.LogException(exception);
+                }
             }
         }
 

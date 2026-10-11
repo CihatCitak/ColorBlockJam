@@ -1,0 +1,12 @@
+{
+    "name": "Game.BlockSystem.Editor",
+    "rootNamespace": "Game.BlockSystem",
+    "references": [
+        "GUID:12ea7ab0f5e49904789cfe3b78d56e7b",
+        "GUID:cad2f2a555a0a0545861ecedf71208a7"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "autoReferenced": true
+}
