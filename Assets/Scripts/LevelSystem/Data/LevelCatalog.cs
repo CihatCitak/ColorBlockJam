@@ -9,11 +9,6 @@ namespace Game.LevelSystem
     {
         [SerializeField] private List<AssetReferenceT<LevelData>> _levels = new();
 
-        public int Count => _levels.Count;
-
-        public AssetReferenceT<LevelData> GetByLevelNumber(int levelNumber)
-        {
-            return _levels[(levelNumber - 1) % _levels.Count];
-        }
+        public IReadOnlyList<AssetReferenceT<LevelData>> Levels => _levels;
     }
 }

@@ -55,19 +55,15 @@ namespace Game.Tests
         }
 
         [Test]
-        public void TryGet_Unbound_ReturnsFalseWithoutError()
-        {
-            Assert.IsFalse(ServiceLocator.TryGet<IFooService>(out _));
-        }
-
-        [Test]
         public void Unbind_RemovesService()
         {
             ServiceLocator.Bind<IFooService>(_service);
+            IFooService service = _service;
 
             ServiceLocator.Unbind<IFooService>(_service);
+            LogUtility.WithoutLogs(() => service = ServiceLocator.Get<IFooService>());
 
-            Assert.IsFalse(ServiceLocator.TryGet<IFooService>(out _));
+            Assert.IsNull(service);
         }
 
         [Test]

@@ -34,18 +34,6 @@ namespace Game.Core.Services
             return null;
         }
 
-        public static bool TryGet<T>(out T service) where T : class
-        {
-            if (Services.TryGetValue(typeof(T), out var found))
-            {
-                service = (T)found;
-                return true;
-            }
-
-            service = null;
-            return false;
-        }
-
         public static void Unbind<T>(T service) where T : class
         {
             if (Services.TryGetValue(typeof(T), out var existing) && ReferenceEquals(existing, service))

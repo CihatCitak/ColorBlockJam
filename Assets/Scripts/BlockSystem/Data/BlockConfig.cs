@@ -14,14 +14,6 @@ namespace Game.BlockSystem
         [SerializeField, Range(1, 20)] private int _crushParticlesPerPart = 4;
         [SerializeField] private Color _outlineColor = Color.white;
         [SerializeField, Range(0f, 10f)] private float _outlineWidth = 4f;
-        [SerializeField] private Material _outlineMaskMaterial;
-        [SerializeField] private Material _outlineFillMaterial;
-        [SerializeField] private BlockView _blockPrefab;
-        [SerializeField] private GameObject _cellColliderPrefab;
-        [SerializeField] private GameObject _centerPartPrefab;
-        [SerializeField] private GameObject _edgePartPrefab;
-        [SerializeField] private GameObject _outerCornerPartPrefab;
-        [SerializeField] private GameObject _innerCornerPartPrefab;
 
         public float MoveSpeed => _moveSpeed;
         public float SnapDuration => _snapDuration;
@@ -31,20 +23,5 @@ namespace Game.BlockSystem
         public int CrushParticlesPerPart => _crushParticlesPerPart;
         public Color OutlineColor => _outlineColor;
         public float OutlineWidth => _outlineWidth;
-        public Material OutlineMaskMaterial => _outlineMaskMaterial;
-        public Material OutlineFillMaterial => _outlineFillMaterial;
-        public BlockView BlockPrefab => _blockPrefab;
-        public GameObject CellColliderPrefab => _cellColliderPrefab;
-
-        public GameObject GetPartPrefab(BlockPartType type)
-        {
-            return type switch
-            {
-                BlockPartType.Edge => _edgePartPrefab,
-                BlockPartType.OuterCorner => _outerCornerPartPrefab,
-                BlockPartType.InnerCorner => _innerCornerPartPrefab,
-                _ => _centerPartPrefab
-            };
-        }
     }
 }

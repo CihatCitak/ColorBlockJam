@@ -1,38 +1,43 @@
-using System.IO;
 using Game.Core.Services;
+using Game.Core.Utilities;
 using UnityEngine;
 
 namespace Game.PlayerSystem
 {
-    internal class PlayerDataStore : BaseService, IPlayerDataStore
+    internal class PlayerDataStore : BaseService, IPlayerLevelProgress
     {
         private const string FileName = "player.json";
 
-        private PlayerData _data;
-        private string _path;
+        [SerializeField] private PlayerConfig _config;
 
-        public int CurrentLevel => _data.CurrentLevel;
+        public PlayerData Data { get; private set; }
+        public int CurrentLevel => Data.CurrentLevel;
 
         protected override void BindServices()
         {
-            ServiceLocator.Bind<IPlayerDataStore>(this);
+            ServiceLocator.Bind<IPlayerLevelProgress>(this);
         }
 
         protected override void UnbindServices()
         {
-            ServiceLocator.Unbind<IPlayerDataStore>(this);
+            ServiceLocator.Unbind<IPlayerLevelProgress>(this);
         }
 
-        public override void Initialize()
+        protected override void Initialize()
         {
-            _path = Path.Combine(Application.persistentDataPath, FileName);
-            _data = File.Exists(_path) ? JsonUtility.FromJson<PlayerData>(File.ReadAllText(_path)) : new PlayerData();
+            Data = new PlayerData { Coins = _config.StartCoins, Lives = _config.MaxLives };
+            JsonFileUtility.Load(FileName, Data);
         }
 
         public void CompleteLevel()
         {
-            _data.CurrentLevel++;
-            File.WriteAllText(_path, JsonUtility.ToJson(_data));
+            Data.CurrentLevel++;
+            Save();
+        }
+
+        public void Save()
+        {
+            JsonFileUtility.Save(FileName, Data);
         }
     }
 }

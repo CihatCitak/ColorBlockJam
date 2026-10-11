@@ -6,5 +6,8 @@ namespace Game.PlayerSystem
     internal class PlayerData
     {
         public int CurrentLevel = 1;
+        public int Coins;
+        public int Lives;
+        public long LifeRefillStartTicks;
     }
 }

@@ -24,20 +24,20 @@ namespace Game.ExitSystem
         public void Spawn(ExitPlacement placement)
         {
             var grid = ServiceLocator.Get<IGrid>();
-            var exit = Instantiate(_config.ExitPrefab, transform);
-            exit.Setup(placement, grid.EdgeToWorld(new GridEdge(placement.Cell, placement.Outward)));
+            var outward = ExitGeometry.Outward(placement.Side);
+            var gate = grid.EdgeToWorld(new GridEdge(placement.Cell, outward));
 
             var center = Vector2.zero;
-            foreach (var edge in placement.Edges)
+            foreach (var edge in ExitGeometry.Edges(placement))
             {
                 var position = grid.EdgeToWorld(edge);
                 var rotation = Quaternion.Euler(0f, 0f, edge.Direction.x != 0 ? 90f : 0f);
-                Instantiate(_config.DoorPrefab, position, rotation, exit.transform).Setup(exit, placement.Color.Color);
+                Instantiate(_config.DoorPrefab, position, rotation, transform).Setup(placement, gate);
                 center += position;
             }
 
-            var arrowRotation = Quaternion.Euler(0f, 0f, AngleUtility.ToDegrees(placement.Outward) - ArrowBaseAngle);
-            Instantiate(_config.ArrowPrefab, center / placement.Length, arrowRotation, exit.transform);
+            var arrowRotation = Quaternion.Euler(0f, 0f, AngleUtility.ToDegrees(outward) - ArrowBaseAngle);
+            Instantiate(_config.ArrowPrefab, center / placement.Length, arrowRotation, transform);
         }
     }
 }

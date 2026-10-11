@@ -1,3 +1,4 @@
+using System;
 using Game.Core.Services;
 using Game.GridSystem;
 using UnityEngine;
@@ -25,15 +26,12 @@ namespace Game.BlockSystem
         {
             var shape = placement.Shape;
             if (shape.Prefab == null)
-            {
-                Debug.LogError($"[BlockSpawner] {shape.name} has no prefab. Create shapes with ColorBlock/Shape Creator.");
-                return;
-            }
+                throw new InvalidOperationException($"[BlockSpawner] {shape.name} has no prefab. Create shapes with ColorBlock/Shape Creator.");
 
             var rotation = Quaternion.Euler(0f, 0f, -QuarterTurnAngle * placement.QuarterTurns);
-            var view = Instantiate(shape.Prefab, transform.position, rotation, transform);
+            var block = Instantiate(shape.Prefab, transform.position, rotation, transform);
             var originCell = placement.Cell + BlockShapeMath.RotationOffset(shape.Cells, placement.QuarterTurns);
-            view.Build(placement.Color, originCell, ServiceLocator.Get<IGrid>(), _config, _crushEffect);
+            block.Build(placement.Color, originCell, ServiceLocator.Get<IGrid>(), _config, _crushEffect);
         }
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using Game.BlockSystem;
 using Game.Core.Services;
 using Game.ExitSystem;
@@ -20,11 +19,11 @@ namespace Game.LevelSystem
             ServiceLocator.Unbind<ILevelCreator>(this);
         }
 
-        public UniTask CreateAsync(LevelData data)
+        public void Create(LevelData data)
         {
             var openings = new List<GridEdge>();
             foreach (var exit in data.Exits)
-                openings.AddRange(exit.Edges);
+                openings.AddRange(ExitGeometry.Edges(exit));
 
             ServiceLocator.Get<IGridBuilder>().Build(data.GridSize, data.Holes, openings);
 
@@ -39,8 +38,6 @@ namespace Game.LevelSystem
             var blocks = ServiceLocator.Get<IBlockSpawner>();
             foreach (var block in data.Blocks)
                 blocks.Spawn(block);
-
-            return UniTask.CompletedTask;
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Game.BlockSystem
 
         public static GameObject Build(IReadOnlyList<Vector2Int> cells, Scene scene)
         {
-            var config = LoadSingle<BlockConfig>();
+            var config = LoadSingle<BlockAuthoringConfig>();
             var cellSize = CellSize;
             var root = (GameObject)PrefabUtility.InstantiatePrefab(config.BlockPrefab.gameObject, scene);
 
@@ -61,16 +61,16 @@ namespace Game.BlockSystem
                 instance.transform.localRotation = Quaternion.Euler(0f, 0f, part.Rotation);
             }
 
-            AssignReferences(root.GetComponent<BlockView>(), config);
+            AssignReferences(root.GetComponent<Block>(), config);
             return root;
         }
 
-        private static BlockView SavePrefab(string path, IReadOnlyList<Vector2Int> cells)
+        private static Block SavePrefab(string path, IReadOnlyList<Vector2Int> cells)
         {
             var scene = EditorSceneManager.NewPreviewScene();
             try
             {
-                return PrefabUtility.SaveAsPrefabAsset(Build(cells, scene), path).GetComponent<BlockView>();
+                return PrefabUtility.SaveAsPrefabAsset(Build(cells, scene), path).GetComponent<Block>();
             }
             finally
             {
@@ -84,17 +84,17 @@ namespace Game.BlockSystem
             return cells.Select(cell => cell - min).ToList();
         }
 
-        private static void AssignReferences(BlockView view, BlockConfig config)
+        private static void AssignReferences(Block block, BlockAuthoringConfig config)
         {
-            var renderers = view.GetComponentsInChildren<Renderer>();
+            var renderers = block.GetComponentsInChildren<Renderer>();
             var baseMaterial = renderers[0].sharedMaterial;
 
-            var serializedView = new SerializedObject(view);
-            SetArray(serializedView.FindProperty("_cellColliders"), view.GetComponentsInChildren<Collider2D>());
-            SetArray(serializedView.FindProperty("_renderers"), renderers);
-            SetArray(serializedView.FindProperty("_plainMaterials"), new Object[] { baseMaterial });
-            SetArray(serializedView.FindProperty("_outlinedMaterials"), new Object[] { baseMaterial, config.OutlineMaskMaterial, config.OutlineFillMaterial });
-            serializedView.ApplyModifiedPropertiesWithoutUndo();
+            var serializedBlock = new SerializedObject(block);
+            SetArray(serializedBlock.FindProperty("_cellColliders"), block.GetComponentsInChildren<Collider2D>());
+            SetArray(serializedBlock.FindProperty("_renderers"), renderers);
+            SetArray(serializedBlock.FindProperty("_plainMaterials"), new Object[] { baseMaterial });
+            SetArray(serializedBlock.FindProperty("_outlinedMaterials"), new Object[] { baseMaterial, config.OutlineMaskMaterial, config.OutlineFillMaterial });
+            serializedBlock.ApplyModifiedPropertiesWithoutUndo();
         }
 
         private static void SetArray(SerializedProperty property, Object[] values)
