@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Core.Services
 {
-    public abstract class BaseService : MonoBehaviour, IService, IInitializable
+    public abstract class BaseService : MonoBehaviour, IInitializable
     {
         private bool _isInitialized;
 
@@ -12,11 +12,11 @@ namespace Game.Core.Services
 
         protected abstract void UnbindServices();
 
-        public virtual void Initialize()
+        protected virtual void Initialize()
         {
         }
 
-        public virtual void DeInitialize()
+        protected virtual void DeInitialize()
         {
         }
 

@@ -23,19 +23,25 @@ namespace Game.LevelSystem
             ServiceLocator.Unbind<ILevelLoader>(this);
         }
 
-        public override void DeInitialize()
+        protected override void DeInitialize()
         {
             ReleaseLevel();
         }
 
         public async UniTask<LevelData> LoadAsync(int levelNumber)
         {
-            if (_catalog.Count == 0)
+            var levels = _catalog.Levels;
+            if (levels.Count == 0)
                 throw new InvalidOperationException("[LevelLoader] LevelCatalog is empty.");
 
             ReleaseLevel();
-            _handle = Addressables.LoadAssetAsync<LevelData>(_catalog.GetByLevelNumber(levelNumber));
+            _handle = Addressables.LoadAssetAsync<LevelData>(levels[CatalogIndex(levelNumber, levels.Count)]);
             return await _handle;
+        }
+
+        internal static int CatalogIndex(int levelNumber, int levelCount)
+        {
+            return (levelNumber - 1) % levelCount;
         }
 
         private void ReleaseLevel()

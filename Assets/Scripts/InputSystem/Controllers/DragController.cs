@@ -45,7 +45,11 @@ namespace Game.InputSystem
 
         private void OnFingerDown(LeanFinger finger)
         {
-            if (_isLocked || _dragged != null || finger.IsOverGui)
+            if (finger.IsOverGui)
+                return;
+
+            EventBus.Fire(new ScreenTouchedEvent());
+            if (_isLocked || _dragged != null)
                 return;
 
             var point = PointOnBoard(finger);

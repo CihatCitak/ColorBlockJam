@@ -1,17 +1,19 @@
 using UnityEngine;
 
-public static class FrameRateSettings
+namespace Game.App
 {
-    private const int MobileTargetFrameRate = 60;
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void Apply()
+    internal static class FrameRateSettings
     {
-        if (!Application.isMobilePlatform)
-            return;
+        private const int MobileTargetFrameRate = 60;
 
-        // Mobile ignores vSyncCount; frame rate is driven by targetFrameRate (default is 30).
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = MobileTargetFrameRate;
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void Apply()
+        {
+            if (!Application.isMobilePlatform)
+                return;
+
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = MobileTargetFrameRate;
+        }
     }
 }

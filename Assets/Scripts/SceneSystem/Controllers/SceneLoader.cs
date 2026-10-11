@@ -22,7 +22,7 @@ namespace Game.SceneSystem
             ServiceLocator.Unbind<ISceneLoader>(this);
         }
 
-        public override void Initialize()
+        protected override void Initialize()
         {
             LoadMainAsync().Forget();
         }
