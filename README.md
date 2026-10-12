@@ -1,8 +1,5 @@
 # ColorBlockJam
-
-Renkli blokları grid üzerinde sürükleyip aynı renkteki kapılardan çıkarmaya dayalı bir bulmaca oyunu.
-
-Bu dosyada aldığım mimari kararları ve nedenlerini tutuyorum.
+Unity Editor de Bootstrap isimli sahneden oyunu başlatabiliriz. Diğer sahnelerden başlatıldığında DI hataları yaşanır.
 
 ## Demo
 
@@ -17,7 +14,7 @@ Bu dosyada aldığım mimari kararları ve nedenlerini tutuyorum.
 
 ## Yapay zekâ ile geliştirme
 
-Projenin kodu, prefab'ları, asset'leri ve testleri Claude Code ile geliştirildi. Unity editörüne Unity MCP ile bağlandı. Yapay zekâyı kod yazan bir araç olarak değil, yönettiğim bir geliştirici gibi kullandım: neyin, hangi mimariyle ve hangi kalitede yapılacağına ben karar verdim, her adımı ben onayladım ve gözden geçirdim.
+Projenin kodu, prefab'ları, asset'leri ve testleri Claude Code ile geliştirildi. Unity editörüne Unity MCP ile bağlandı. Yapay zekâyı kod yazan bir araç olarak görüp, neyin hangi mimariyle ve hangi kalitede yapılacağına ben karar verdim, her adımı ben onayladım ve gözden geçirdim.
 
 **Ortam**
 
@@ -80,14 +77,6 @@ Projenin kodu, prefab'ları, asset'leri ve testleri Claude Code ile geliştirild
 - Görsel ayarlarda yapay zekâ referanstan renk ve perspektif ölçüyor, varyantları yan yana çiziyor; seçimi ben yapıyorum. Gerekirse kamera ve ışığı play modunda kendim ayarlıyorum, yapay zekâ o değerleri projeye kaydediyor.
 - Level'ların çözülebilirliği tahmine bırakılmadı. Yapay zekâya oyunun kurallarını birebir uygulayan bir çözücü yazdırdım. Her level önce çözücüden geçti, sonra Unity'de fizikle tek tek oynatılıp bitirildi.
 - Son kontrol bende: oyunu kendim oynuyorum, diff'leri okuyorum ve commit'leri kendim atıyorum.
-
----
-
-## Kapsam
-
-- Önce sadece Main ve Gameplay sahneleriyle başladım.
-- Level'ları başta test amaçlı, elle yazılmış basit level'larla yapıyorum. Level editörünü `LevelData` yapısı oturduktan sonra ayrı bir branch'te yazacağım. Böylece editörü değişmeye devam eden bir veri formatına göre yazmak zorunda kalmıyorum.
-- Merkezi bir config sistemi kurmadım. Her sistem ihtiyaç duyduğunda kendi ScriptableObject config'ini oluşturuyor.
 
 ## Klasör ve assembly yapısı
 
